@@ -1,0 +1,14 @@
+res://Scripts/Player/PlayerState
+res://Assets/Player/Animations/outfit
+res://Assets/Player/Animations/playerBase
+res://Assets/Player/Manual/playerSpriteSheets/Weapon/1h/Walk
+res://Assets/Player/Manual/playerSpriteSheets/Weapon/1h/Idle
+res://Assets/Player/Manual/playerSpriteSheets/Player/1h/Walk/Base
+res://Assets/Player/Manual/playerSpriteSheets/Player/1h/Walk/Outfit
+res://Assets/Player/Manual/playerSpriteSheets/Player/1h/Idle/Outfit
+res://Assets/Player/Manual/playerSpriteSheets/Player/1h/Idle/Base
+res://Assets/Player/Manual
+res://Scripts/Player
+res://Assets/Player/Master
+res://Scenes/World
+res://Scenes/Player
