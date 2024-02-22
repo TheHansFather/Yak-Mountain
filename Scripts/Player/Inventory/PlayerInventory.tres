@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Inv" load_steps=2 format=3 uid="uid://df6mw16icap3e"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Inventory/Inventory.gd" id="1_wy4at"]
+
+[resource]
+script = ExtResource("1_wy4at")
+slots = Array[Object]([])

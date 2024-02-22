@@ -1,4 +1,13 @@
 res://Scenes/Player/Player.tscn
-res://Scripts/Player/PlayerState/PlayerStateMachine.gd
-res://Scripts/Player/PlayerState/Walk.gd
+res://Scripts/Player/Inventory/InventoryItem.gd
+res://Scripts/Player/Inventory/Items/Wood.tres
+res://Scripts/Player/Inventory/Items/Stick.tres
+res://Scripts/Player/Inventory/Inventory.gd
+res://Scripts/Player/Inventory/PlayerInventory.tres
+res://Scripts/Player/PlayerMain.gd
+res://Scenes/Player/inv_ui.tscn
+res://Scripts/Player/Inventory/inv_ui.gd
 res://Scenes/World/World.tscn
+res://Scenes/Player/inv_slot_ui.tscn
+res://Scripts/Player/Inventory/inv_slot_ui.gd
+res://Scripts/Player/Inventory/InvSlot.gd

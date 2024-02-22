@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://bycayaqj0o5wb"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Inventory/InventoryItem.gd" id="1_fps6r"]
+[ext_resource type="Texture2D" uid="uid://dmtfigx1e1ufb" path="res://Assets/Items/Crafting/Raw/Wood/stick.png" id="2_m8d0d"]
+
+[resource]
+script = ExtResource("1_fps6r")
+name = "Stick"
+texture = ExtResource("2_m8d0d")

@@ -972,6 +972,12 @@ layer_2/tile_data = PackedInt32Array()
 [node name="Player" parent="." instance=ExtResource("1_j1252")]
 position = Vector2(-2, -315)
 
+[node name="playerBaseAnimationTree" parent="Player" index="4"]
+parameters/idle/blend_position = 0
+parameters/idle_1h/blend_position = 0
+parameters/walk/blend_position = Vector2(0, 0)
+parameters/walk_1h/blend_position = Vector2(0, 0)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" type="Control" parent="CanvasLayer"]

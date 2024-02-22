@@ -1,3 +1,7 @@
+res://Scripts/Player/Inventory
+res://Scenes/Player
+res://Scripts/Player/Inventory/Items
+res://Assets/Player/Animations/1h/weapon_1h
 res://Scripts/Player/PlayerState
 res://Assets/Player/Animations/outfit
 res://Assets/Player/Animations/playerBase
@@ -11,4 +15,3 @@ res://Assets/Player/Manual
 res://Scripts/Player
 res://Assets/Player/Master
 res://Scenes/World
-res://Scenes/Player

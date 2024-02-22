@@ -1,67 +1,113 @@
 extends State
-class_name WalkState
+class_name Walk
 
 @export var player : CharacterBody2D
-@export var playerBase : Sprite2D
-@export var playerBaseAnimationPlayer : AnimationPlayer
-@export var playerBaseAnimationTree : AnimationTree
 
-signal direction_changed(new_direction:int)
+@export var playerBase : Sprite2D
+@export var outfitBase : Sprite2D
+@export var weapon : Sprite2D
+
+@export var playerBaseAnimationPlayer : AnimationPlayer
+
+@export var playerBaseAnimationTree : AnimationTree
+@export var outfitAnimationTree : AnimationTree
+@export var weaponAnimationTree : AnimationTree
+
 
 var direction : int = 1
 var last_direction : int = 1
-var velocity = Input.get_vector("left", "right", "up", "down")
+var velocity : Vector2 = Vector2.ZERO
 
 func Enter():
-	PlayerMovement()
-	UpdateFacingDirection()
-	UpdateAnimation()
-	## Set label emit here for testing state changes
+	print("entering walk State")
+	player.weapon_equipped = false
+	weapon.visible = false
 	
-func Update(delta: float):
-	UpdateAnimation()
+func Update(_delta: float):
+	UpdateAnimationParameters()
 	UpdateFacingDirection()
+	DetectWeapon()
 	
-func Physics_Update(delta: float):
+func Physics_Update(_delta: float):
 	PlayerMovement()
 	NoMovement()
 
 func PlayerMovement():
-	velocity = Input.get_vector("left", "right", "up", "down")
-	velocity = player.velocity.normalized() * player.speed
-	
-	player.move_and_slide()
-	
-	if velocity.x > 0 :
-		direction = 1
-	elif velocity.x < 0:
-		direction = -1
-	elif velocity.x == 0:
-		direction = 0
+	if player.weapon_equipped == false:
+		velocity = Input.get_vector("left", "right", "up", "down").normalized()
+		velocity = velocity * player.speed
+		player.velocity = velocity
+		player.move_and_slide()
 		
-	if velocity.y != 0 && (direction == 0):
-		direction = last_direction
+		if velocity.x > 0 :
+			direction = 1
+		elif velocity.x < 0:
+			direction = -1
+		elif velocity.x == 0:
+			direction = 0
+			
+		if velocity.y != 0 && (direction == 0):
+			direction = last_direction
 	
-func UpdateAnimation():
-	playerBaseAnimationTree.set("parameters/walk/blend_position", direction)
-	
+func UpdateAnimationParameters():
+	if player.velocity != Vector2.ZERO:
+		playerBaseAnimationTree["parameters/conditions/is_moving"] = true
+		playerBaseAnimationTree["parameters/conditions/idle"] = false
+		playerBaseAnimationTree["parameters/conditions/armed_idle"] = false
+		playerBaseAnimationTree["parameters/conditions/armed_is_moving"] = false
+		
+		outfitAnimationTree["parameters/conditions/is_moving"] = true
+		outfitAnimationTree["parameters/conditions/idle"] = false
+		outfitAnimationTree["parameters/conditions/armed_idle"] = false
+		outfitAnimationTree["parameters/conditions/armed_is_moving"] = false
+		
+		weaponAnimationTree["parameters/conditions/has_weapon"] = false
+		weaponAnimationTree["parameters/conditions/idle"] = false
+		weaponAnimationTree["parameters/conditions/is_moving"] = false
+		
+		playerBaseAnimationTree.set("parameters/walk/blend_position", direction)
+		outfitAnimationTree.set("parameters/outfit_walk/blend_position", direction)
+		weaponAnimationTree.set("parameters/walk/blend_position", direction)
+
 func UpdateFacingDirection():
 	if direction > 0:
 		playerBase.flip_h = false
+		outfitBase.flip_h = false
+		weapon.flip_h = false
 		last_direction = direction
 	elif direction < 0:
 		playerBase.flip_h = true
+		outfitBase.flip_h = true
+		weapon.flip_h = true
 		last_direction = direction
 
 func set_last_direction(new_direction):
 	if last_direction != new_direction:
 		last_direction = new_direction
-		emit_signal("direction_changed", new_direction)
 
 func NoMovement():
-	if Vector2.ZERO:
-		Transitioned.emit(State, "idle")
-	
+	if velocity == Vector2.ZERO:
+		Transitioned.emit(self, "idle")
+		print("leaving walk state")
+
+func DetectWeapon():
+	if Input.is_action_just_pressed("(un)equip"):
+		print("pressed")
+		Transitioned.emit(self, "walk_armed")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
